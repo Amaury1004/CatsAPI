@@ -11,12 +11,17 @@ class NetworkManager {
         case none = ""
         case search = "images/search"
     }
-    
+    // Это надо будет убрать
     enum TypeRequest: Int {
         case noneBreads = 0
         case hasBreads = 1
     }
-    
+
+    /// Тебе требовалось добавить доп параметр для того, чтобы получать информацию о породах или нет
+    /// Данный параметр задается в соответствующее поле parameters
+    ///  Network Manager не должен меняться никогда в угоду изменения реквестов. Единственное одобряемое здесь изменение это добавление
+    ///  api key. Это корректное решение, и так делать правильно, любые другие изменения не должны касаться Network Manager.
+    /// Максим прошу внимательно читать код, перед тем как делашеь изменения, осознавать каждую строчку. Посмотри на 34-35 строку и 39-40, задумойся.
     func request<T: Decodable>(_ url: NetworkRequest,
                                parameters: [String: String]? = nil,
                                typeRequest: TypeRequest? = .noneBreads,

@@ -12,10 +12,12 @@ class CatListPresenter: CatListProtocol {
     init(view: CatListView) {
         self.view = view
     }
-    
+    // Неверный нейминг
     func loadNextpage_withBreeds() {
+        // Ну и можно не разбивать на два метода, я объяснил, где должна передаваться эта переменная
         loadNextPage(with: .hasBreads)
     }
+    // Неверный нейминг
     func loadNextPage_withoutBreeds() {
         loadNextPage()
     }
@@ -23,6 +25,7 @@ class CatListPresenter: CatListProtocol {
     func loadNextPage(with type: NetworkManager.TypeRequest? = nil) {
         guard !isLoading else { return }
         isLoading = true
+        // Ультра гига омега критическая ошибка идем разбираться в Network Manager
         NetworkManager.shared.request(.search,
                                       parameters: ["limit": "\(pageSize)", "page": "\(currentPage)"], typeRequest: type) { [weak self] (result: Result<[Cat], Error>) in
             guard let self = self else { return }

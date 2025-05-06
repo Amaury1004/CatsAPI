@@ -116,6 +116,7 @@ class MainViewController: UIViewController {
         self.present(nc, animated: true, completion: nil)
     }
     @objc private func powCats() {
+        // Ахуенно
         let alert = UIAlertController(title: "Мяу!", message: "Мяу Мяу?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Мяу.", style: .default))
         present(alert, animated: true)
@@ -124,10 +125,12 @@ class MainViewController: UIViewController {
         let breedsCat = CatListViewController(withBreeds: true)
         let nc = UINavigationController(rootViewController: breedsCat)
         nc.modalPresentationStyle = .fullScreen
+        // ЧТобы не подалить (present) а делать пуш(push) тебе надо этот контроллер обернуть в навигейшен
         self.present(nc, animated: true, completion: nil)
     }
     
     @objc private func favoriteCat() {
+        // Отсюда нельзя выйти
         let favoriteCat = FavoritesViewController()
         let nc = UINavigationController(rootViewController: favoriteCat)
         nc.modalPresentationStyle = .fullScreen

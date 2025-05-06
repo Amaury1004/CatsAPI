@@ -1,6 +1,8 @@
-/// Дополнить модель Cat новым полем breeds которое будет breeds: [Breed]
-/// Добавить кнопку, которая будет пушить на экран с информацией о породе
+/// Дополнить модель Cat новым полем breeds которое будет breeds: [Breed] ✅
+/// Добавить кнопку, которая будет пушить на экран с информацией о породе ❌ (ты модалишь, а не пушишь)
 /// Кнопка сохранения кота и возможность просмотреть всех сохраненных котов
+
+/// У тебя нарушена логика работы Model - View - Presenter, ниже я отмечу все места, которы ене должны быть во Вью КОнтроллере
 
 
 import UIKit
@@ -23,6 +25,7 @@ class CatListViewController: UIViewController {
     private lazy var presenter: CatListProtocol = CatListPresenter(view: self)
     
     init(withBreeds: Bool) {
+        // Переменная по управлению логикой контента, не должна быть во VC
          self.withBreeds = withBreeds
          super.init(nibName: nil, bundle: nil)
      }
@@ -43,7 +46,7 @@ class CatListViewController: UIViewController {
         tableView.isPagingEnabled = true
         view.addSubview(tableView)
         setupTopPanel()
-        
+        // То же самое, это решение для презентера, не VC
         if withBreeds {
             presenter.loadNextpage_withBreeds()
         }else{
@@ -52,7 +55,12 @@ class CatListViewController: UIViewController {
     }
     
     func setupTopPanel() {
-        
+        // У тебя модальный тип отображения экрана. Не должно быть шевронов, ты делаешь антипаттерн.
+        // Экран должен закрываться сверху вниз, но ты отображаешь шеврон, вводя пользователя в заблуждение,
+        // что это экран который пушится, тем самым давая ему ложное ощущение от действия
+        // исправить на крестик
+        // P.S. В целом не понимаю зачем ты его модалишь, если можно презентовать первый экран на навигейшен вью
+        // и с нее пушить
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
                                          style: .plain,
                                          target: self,
@@ -113,7 +121,7 @@ class CatListViewController: UIViewController {
         }
         
     }
-    @objc func backButton(){
+    @objc func backButton() {
         dismiss(animated: true)
     }
 
@@ -134,7 +142,10 @@ extension CatListViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         let cat = cats[indexPath.row]
-        let hasBreed = !(cat.breeds?.isEmpty ?? true)
+        // Так код выглядет чище. Старайся не усложнять логические улосвия(по возможности)
+        let breeds = cat.breeds ?? []
+        let hasBreed = !breeds.isEmpty
+        //let hasBreed = !(cat.breeds?.isEmpty ?? true)
         if let vm = CatListCellViewModel(urlString: cat.url, hasBreed: hasBreed) {
             cell.viewModel = vm
         }
@@ -143,6 +154,7 @@ extension CatListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == cats.count - 1 {
+            // Кривой нейминг, в iOS так не пишут.
             presenter.loadNextpage_withBreeds()
         }
     }
@@ -177,6 +189,7 @@ extension CatListViewController: CatListView {
 
 extension CatListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Это делегат Scroll View он не может выполняться не на мейн потоке, делаешь овер трединг, убирай
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
 

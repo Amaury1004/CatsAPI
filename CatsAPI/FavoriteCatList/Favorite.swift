@@ -5,11 +5,16 @@ class FavoritesViewController: UIViewController {
     private let tableView = UITableView()
     private var favorites: [Cat] = []
     private let saved = FavoritesManager()
+    // Насранно с переменными
     let SerchCats = UIButton(type: .system)
     let DeliteCat = UIButton(type: .system)
 
     init() {
         super.init(nibName: nil, bundle: nil)
+        /// Зачем тебе для этого синглтон?
+        /// Синглтон создается для крупных модулей приложения, которые по пальцам пересчитать
+        /// Нетворкинг, работа с БД, обработчик картинок и то, уже сомнительно. Для всего остального учимся думать
+        /// В целом тут должна быть та же модель взаимодействия данных что и в CatList Model - View - Presenter. Если ты ее не понял, задавай вопросы, отвечу
         self.favorites = FavoritesManager.shared.getFavorites()
     }
 

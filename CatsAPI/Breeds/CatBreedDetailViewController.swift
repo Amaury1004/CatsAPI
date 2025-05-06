@@ -1,4 +1,4 @@
-import UIKit
+	import UIKit
 
 class CatBreedDetailViewController: UIViewController {
     private let breed: Breed
@@ -12,6 +12,10 @@ class CatBreedDetailViewController: UIViewController {
         self.breed = breed
         self.catImageUrl = imageUrl
 
+        /// Решение умом *картинка сверхразума*
+        /// В целом можно так оставить, но в будущем всегда используй для такого структуру
+        /// Я конечно сам мог подобным насрать где-то в примере, но это могло быть ради экономии времени, так мы все модели для отображения
+        /// оборачиваем в структуры. Будет у тебя AttributedModel, которая будет иметь те же title/value. Для работы это не критично, но такие штуки могут быть не приняты, хоть подход и норм в целом
         self.attributes = [
             ("Weight (Imperial)", breed.weight?.imperial ?? "none"),
             ("Weight (Metric)", breed.weight?.metric ?? "none"),

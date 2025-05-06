@@ -81,7 +81,6 @@ class CatListCell: UITableViewCell {
                breedInfoStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
 
-        
     }
 
     private func setupPinchGesture() {

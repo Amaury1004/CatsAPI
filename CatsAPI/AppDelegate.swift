@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  CatsAPI
+//  NetworkLessonApp
 //
-//  Created by MakOSim on 21.04.2025.
+//  Created by Dmitry Kuchin on 10.04.25.
 //
 
 import UIKit

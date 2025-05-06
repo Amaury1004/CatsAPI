@@ -7,12 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		116813FC2DB6663F00463355 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116813FB2DB6663F00463355 /* AppDelegate.swift */; };
-		116813FE2DB6663F00463355 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116813FD2DB6663F00463355 /* SceneDelegate.swift */; };
-		116814002DB6663F00463355 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116813FF2DB6663F00463355 /* ViewController.swift */; };
-		116814032DB6663F00463355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116814012DB6663F00463355 /* Main.storyboard */; };
+		111EB46F2DC93D5200E41692 /* AttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111EB46E2DC93D5200E41692 /* AttributeCell.swift */; };
+		115BC7D82DB6B3C300808E79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1168142E2DB6670400463355 /* SceneDelegate.swift */; };
+		115BC7D92DB6B3CB00808E79 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116814312DB6670400463355 /* ImageDownloader.swift */; };
+		115BC7DA2DB6B3D200808E79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116814302DB6670400463355 /* AppDelegate.swift */; };
+		115BC7DF2DB6B43700808E79 /* CatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BC7DE2DB6B43700808E79 /* CatCell.swift */; };
+		115BC7E12DB6B45900808E79 /* CatListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BC7E02DB6B45900808E79 /* CatListPresenter.swift */; };
+		115BC7E32DB6B47600808E79 /* CatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BC7E22DB6B47600808E79 /* CatListViewController.swift */; };
+		115BC7E72DB6B4C300808E79 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BC7E62DB6B4C300808E79 /* Cat.swift */; };
+		115BC7E92DB6B4DD00808E79 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115BC7E82DB6B4DD00808E79 /* NetworkManager.swift */; };
+		115C24152DCA2B8B007ADFEA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C24142DCA2B8B007ADFEA /* MainViewController.swift */; };
+		115E81C82DC360DF00A02674 /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E81C72DC360DF00A02674 /* Breed.swift */; };
+		115E81CA2DC361F100A02674 /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E81C92DC361F100A02674 /* FavoriteManager.swift */; };
+		115E81CC2DC375D600A02674 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E81CB2DC375D600A02674 /* Favorite.swift */; };
 		116814052DB6664000463355 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116814042DB6664000463355 /* Assets.xcassets */; };
-		116814082DB6664000463355 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116814062DB6664000463355 /* LaunchScreen.storyboard */; };
+		116814082DB6664000463355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116814062DB6664000463355 /* Main.storyboard */; };
 		116814132DB6664100463355 /* CatsAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116814122DB6664100463355 /* CatsAPITests.swift */; };
 		1168141D2DB6664100463355 /* CatsAPIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1168141C2DB6664100463355 /* CatsAPIUITests.swift */; };
 		1168141F2DB6664100463355 /* CatsAPIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1168141E2DB6664100463355 /* CatsAPIUITestsLaunchTests.swift */; };
@@ -36,19 +45,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		111EB46E2DC93D5200E41692 /* AttributeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeCell.swift; sourceTree = "<group>"; };
+		115BC7DE2DB6B43700808E79 /* CatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatCell.swift; sourceTree = "<group>"; };
+		115BC7E02DB6B45900808E79 /* CatListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatListPresenter.swift; sourceTree = "<group>"; };
+		115BC7E22DB6B47600808E79 /* CatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatListViewController.swift; sourceTree = "<group>"; };
+		115BC7E62DB6B4C300808E79 /* Cat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
+		115BC7E82DB6B4DD00808E79 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		115C24142DCA2B8B007ADFEA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		115E81C72DC360DF00A02674 /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
+		115E81C92DC361F100A02674 /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
+		115E81CB2DC375D600A02674 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		116813F82DB6663F00463355 /* CatsAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatsAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		116813FB2DB6663F00463355 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		116813FD2DB6663F00463355 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		116813FF2DB6663F00463355 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		116814022DB6663F00463355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		116814042DB6664000463355 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		116814072DB6664000463355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		116814072DB6664000463355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		116814092DB6664000463355 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1168140E2DB6664100463355 /* CatsAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatsAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		116814122DB6664100463355 /* CatsAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsAPITests.swift; sourceTree = "<group>"; };
 		116814182DB6664100463355 /* CatsAPIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatsAPIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1168141C2DB6664100463355 /* CatsAPIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsAPIUITests.swift; sourceTree = "<group>"; };
 		1168141E2DB6664100463355 /* CatsAPIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsAPIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1168142E2DB6670400463355 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		116814302DB6670400463355 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		116814312DB6670400463355 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +94,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		111EB46D2DC93D0000E41692 /* Breeds */ = {
+			isa = PBXGroup;
+			children = (
+				115E81C72DC360DF00A02674 /* Breed.swift */,
+				111EB46E2DC93D5200E41692 /* AttributeCell.swift */,
+			);
+			path = Breeds;
+			sourceTree = "<group>";
+		};
+		115BC7DB2DB6B3E800808E79 /* CatList */ = {
+			isa = PBXGroup;
+			children = (
+				115BC7DE2DB6B43700808E79 /* CatCell.swift */,
+				115BC7E02DB6B45900808E79 /* CatListPresenter.swift */,
+				115BC7E22DB6B47600808E79 /* CatListViewController.swift */,
+			);
+			path = CatList;
+			sourceTree = "<group>";
+		};
+		115BC7E52DB6B4AF00808E79 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				115BC7EA2DB6B4EC00808E79 /* Requets */,
+				115BC7EB2DB6B50300808E79 /* Responce */,
+				115BC7E82DB6B4DD00808E79 /* NetworkManager.swift */,
+				115BC7E62DB6B4C300808E79 /* Cat.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		115BC7EA2DB6B4EC00808E79 /* Requets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Requets;
+			sourceTree = "<group>";
+		};
+		115BC7EB2DB6B50300808E79 /* Responce */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Responce;
+			sourceTree = "<group>";
+		};
+		115E81CD2DC37B1000A02674 /* FavoriteCatList */ = {
+			isa = PBXGroup;
+			children = (
+				115E81CB2DC375D600A02674 /* Favorite.swift */,
+				115E81C92DC361F100A02674 /* FavoriteManager.swift */,
+			);
+			path = FavoriteCatList;
+			sourceTree = "<group>";
+		};
 		116813EF2DB6663F00463355 = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +170,17 @@
 		116813FA2DB6663F00463355 /* CatsAPI */ = {
 			isa = PBXGroup;
 			children = (
-				116813FB2DB6663F00463355 /* AppDelegate.swift */,
-				116813FD2DB6663F00463355 /* SceneDelegate.swift */,
-				116813FF2DB6663F00463355 /* ViewController.swift */,
-				116814012DB6663F00463355 /* Main.storyboard */,
+				115BC7DB2DB6B3E800808E79 /* CatList */,
+				115E81CD2DC37B1000A02674 /* FavoriteCatList */,
+				111EB46D2DC93D0000E41692 /* Breeds */,
+				115BC7E52DB6B4AF00808E79 /* model */,
+				116814302DB6670400463355 /* AppDelegate.swift */,
+				115C24142DCA2B8B007ADFEA /* MainViewController.swift */,
+				116814312DB6670400463355 /* ImageDownloader.swift */,
 				116814042DB6664000463355 /* Assets.xcassets */,
-				116814062DB6664000463355 /* LaunchScreen.storyboard */,
 				116814092DB6664000463355 /* Info.plist */,
+				116814062DB6664000463355 /* Main.storyboard */,
+				1168142E2DB6670400463355 /* SceneDelegate.swift */,
 			);
 			path = CatsAPI;
 			sourceTree = "<group>";
@@ -195,6 +270,7 @@
 				TargetAttributes = {
 					116813F72DB6663F00463355 = {
 						CreatedOnToolsVersion = 13.2;
+						LastSwiftMigration = 1320;
 					};
 					1168140D2DB6664100463355 = {
 						CreatedOnToolsVersion = 13.2;
@@ -231,9 +307,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				116814082DB6664000463355 /* LaunchScreen.storyboard in Resources */,
+				116814082DB6664000463355 /* Main.storyboard in Resources */,
 				116814052DB6664000463355 /* Assets.xcassets in Resources */,
-				116814032DB6663F00463355 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +333,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				116814002DB6663F00463355 /* ViewController.swift in Sources */,
-				116813FC2DB6663F00463355 /* AppDelegate.swift in Sources */,
-				116813FE2DB6663F00463355 /* SceneDelegate.swift in Sources */,
+				115BC7DF2DB6B43700808E79 /* CatCell.swift in Sources */,
+				115C24152DCA2B8B007ADFEA /* MainViewController.swift in Sources */,
+				115BC7E72DB6B4C300808E79 /* Cat.swift in Sources */,
+				115BC7DA2DB6B3D200808E79 /* AppDelegate.swift in Sources */,
+				115BC7D92DB6B3CB00808E79 /* ImageDownloader.swift in Sources */,
+				115BC7E92DB6B4DD00808E79 /* NetworkManager.swift in Sources */,
+				115BC7E32DB6B47600808E79 /* CatListViewController.swift in Sources */,
+				115E81CA2DC361F100A02674 /* FavoriteManager.swift in Sources */,
+				115BC7E12DB6B45900808E79 /* CatListPresenter.swift in Sources */,
+				115E81CC2DC375D600A02674 /* Favorite.swift in Sources */,
+				115E81C82DC360DF00A02674 /* Breed.swift in Sources */,
+				111EB46F2DC93D5200E41692 /* AttributeCell.swift in Sources */,
+				115BC7D82DB6B3C300808E79 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,20 +382,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		116814012DB6663F00463355 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				116814022DB6663F00463355 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		116814062DB6664000463355 /* LaunchScreen.storyboard */ = {
+		116814062DB6664000463355 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				116814072DB6664000463355 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -437,6 +514,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -454,6 +532,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Makotkin.CatsAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CatsAPI/CatsAPI-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -464,6 +544,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -481,6 +562,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Makotkin.CatsAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CatsAPI/CatsAPI-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

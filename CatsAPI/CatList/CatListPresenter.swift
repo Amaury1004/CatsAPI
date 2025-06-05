@@ -1,6 +1,8 @@
 protocol CatListProtocol {
     func loadNextPage()
-    
+    func getCatIndex(at index: Int) -> Cat
+    func getCatsCount() -> Int
+    func addCats(_ newCats: [Cat])
 }
 
 class CatListPresenter: CatListProtocol {
@@ -9,6 +11,8 @@ class CatListPresenter: CatListProtocol {
     weak var view: CatListView?
     private let pageSize = 10
     private let hasBreeds: Bool
+    
+    private var cats: [Cat] = []
     
 
     init(view: CatListView, hasBreeds: Bool) {
@@ -20,6 +24,15 @@ class CatListPresenter: CatListProtocol {
         case none = "0"
         case has = "1"
     }
+    func getCatIndex(at index: Int) -> Cat {
+        return cats[index]
+    }
+    func getCatsCount() -> Int {
+        return cats.count
+    }
+    func addCats(_ newCats: [Cat]) {
+            cats.append(contentsOf: newCats)
+        }
     
     func loadNextPage() {
         guard !isLoading else { return }

@@ -14,7 +14,6 @@ protocol CatListView: AnyObject {
 
 class CatListViewController: UIViewController {
     private let tableView = UITableView()
-    private var cats: [Cat] = []
     
     private let hasBreeds: Bool
     
@@ -86,7 +85,7 @@ class CatListViewController: UIViewController {
 
     @objc func addToFavorites() {
         guard let index = tableView.indexPathsForVisibleRows?.first else { return }
-        let cat = cats[index.row]
+        let cat = presenter.getCatIndex(at: index.row)
 
         if !FavoritesManager.shared.getFavorites().contains(where: { $0.id == cat.id }) {
             FavoritesManager.shared.add(cat: cat)
@@ -107,7 +106,7 @@ class CatListViewController: UIViewController {
     }
     @objc func menu() {
         guard let index = tableView.indexPathsForVisibleRows?.first else { return }
-        let cat = cats[index.row]
+        let cat = presenter.getCatIndex(at: index.row)
         
         guard let breeds = cat.breeds, !breeds.isEmpty else {
             let alert = UIAlertController(title: "Нет информации", message: "У этого кота нет описания породы", preferredStyle: .alert)
@@ -127,7 +126,6 @@ class CatListViewController: UIViewController {
     }
 
     func setCats(_ cats: [Cat]) {
-        self.cats = cats
         tableView.reloadData()
     }
 
@@ -135,14 +133,14 @@ class CatListViewController: UIViewController {
 
 extension CatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cats.count
+        presenter.getCatsCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CatListCell.reuseIdentifier, for: indexPath) as? CatListCell else {
             return UITableViewCell()
         }
-        let cat = cats[indexPath.row]
+        let cat = presenter.getCatIndex(at: indexPath.row)
         // Так код выглядет чище. Старайся не усложнять логические улосвия(по возможности)
         let breeds = cat.breeds ?? []
         let hasBreed = !breeds.isEmpty
@@ -154,8 +152,7 @@ extension CatListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == cats.count - 1 {
-            // Кривой нейминг, в iOS так не пишут.
+        if indexPath.row == presenter.getCatsCount() - 1 {
             presenter.loadNextPage()
         }
     }
@@ -170,10 +167,10 @@ extension CatListViewController: CatListView {
     func showCats(_ newCats: [Cat]) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self, !newCats.isEmpty else { return }
-            let startIndex = self.cats.count
+            let startIndex = self.presenter.getCatsCount()
             let endIndex = startIndex + newCats.count
             let indexPaths = (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
-            self.cats.append(contentsOf: newCats)
+            self.presenter.addCats(newCats)
             self.tableView.performBatchUpdates({
                 self.tableView.insertRows(at: indexPaths, with: .automatic)
             }, completion: nil)
@@ -190,10 +187,6 @@ extension CatListViewController: CatListView {
 
 extension CatListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // Это делегат Scroll View он не может выполняться не на мейн потоке, делаешь овер трединг, убирай
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-
             if let scrollNow = self.tableView.indexPathsForVisibleRows?.first {
                 let currentIndex = scrollNow.row
                 
@@ -203,6 +196,6 @@ extension CatListViewController: UIScrollViewDelegate {
                 
                 self.navigationItem.titleView = mainLabel
             }
-        }
+        
     }
 }

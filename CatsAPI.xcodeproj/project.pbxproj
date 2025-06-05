@@ -19,8 +19,10 @@
 		115C24152DCA2B8B007ADFEA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C24142DCA2B8B007ADFEA /* MainViewController.swift */; };
 		115C24192DCA4E5D007ADFEA /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 115C24182DCA4E5D007ADFEA /* .gitignore */; };
 		115E81C82DC360DF00A02674 /* CatBreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E81C72DC360DF00A02674 /* CatBreedDetailViewController.swift */; };
-		115E81CA2DC361F100A02674 /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E81C92DC361F100A02674 /* FavoriteManager.swift */; };
-		115E81CC2DC375D600A02674 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E81CB2DC375D600A02674 /* Favorite.swift */; };
+		115E81CC2DC375D600A02674 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E81CB2DC375D600A02674 /* FavoriteController.swift */; };
+		1160556B2DF211CE001555FE /* AtributsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160556A2DF211CE001555FE /* AtributsModel.swift */; };
+		1160556D2DF2178E001555FE /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160556C2DF2178E001555FE /* FavoritePresenter.swift */; };
+		1160556F2DF22847001555FE /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160556E2DF22847001555FE /* FavoriteManager.swift */; };
 		116814052DB6664000463355 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116814042DB6664000463355 /* Assets.xcassets */; };
 		116814082DB6664000463355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116814062DB6664000463355 /* Main.storyboard */; };
 		116814132DB6664100463355 /* CatsAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116814122DB6664100463355 /* CatsAPITests.swift */; };
@@ -55,8 +57,10 @@
 		115C24142DCA2B8B007ADFEA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		115C24182DCA4E5D007ADFEA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		115E81C72DC360DF00A02674 /* CatBreedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatBreedDetailViewController.swift; sourceTree = "<group>"; };
-		115E81C92DC361F100A02674 /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
-		115E81CB2DC375D600A02674 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		115E81CB2DC375D600A02674 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
+		1160556A2DF211CE001555FE /* AtributsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtributsModel.swift; sourceTree = "<group>"; };
+		1160556C2DF2178E001555FE /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
+		1160556E2DF22847001555FE /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
 		116813F82DB6663F00463355 /* CatsAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatsAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		116814042DB6664000463355 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		116814072DB6664000463355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 			children = (
 				115E81C72DC360DF00A02674 /* CatBreedDetailViewController.swift */,
 				111EB46E2DC93D5200E41692 /* AttributeCell.swift */,
+				1160556A2DF211CE001555FE /* AtributsModel.swift */,
 			);
 			path = Breeds;
 			sourceTree = "<group>";
@@ -143,8 +148,9 @@
 		115E81CD2DC37B1000A02674 /* FavoriteCatList */ = {
 			isa = PBXGroup;
 			children = (
-				115E81CB2DC375D600A02674 /* Favorite.swift */,
-				115E81C92DC361F100A02674 /* FavoriteManager.swift */,
+				115E81CB2DC375D600A02674 /* FavoriteController.swift */,
+				1160556C2DF2178E001555FE /* FavoritePresenter.swift */,
+				1160556E2DF22847001555FE /* FavoriteManager.swift */,
 			);
 			path = FavoriteCatList;
 			sourceTree = "<group>";
@@ -344,9 +350,11 @@
 				115BC7D92DB6B3CB00808E79 /* ImageDownloader.swift in Sources */,
 				115BC7E92DB6B4DD00808E79 /* NetworkManager.swift in Sources */,
 				115BC7E32DB6B47600808E79 /* CatListViewController.swift in Sources */,
-				115E81CA2DC361F100A02674 /* FavoriteManager.swift in Sources */,
 				115BC7E12DB6B45900808E79 /* CatListPresenter.swift in Sources */,
-				115E81CC2DC375D600A02674 /* Favorite.swift in Sources */,
+				1160556D2DF2178E001555FE /* FavoritePresenter.swift in Sources */,
+				115E81CC2DC375D600A02674 /* FavoriteController.swift in Sources */,
+				1160556F2DF22847001555FE /* FavoriteManager.swift in Sources */,
+				1160556B2DF211CE001555FE /* AtributsModel.swift in Sources */,
 				115E81C82DC360DF00A02674 /* CatBreedDetailViewController.swift in Sources */,
 				111EB46F2DC93D5200E41692 /* AttributeCell.swift in Sources */,
 				115BC7D82DB6B3C300808E79 /* SceneDelegate.swift in Sources */,

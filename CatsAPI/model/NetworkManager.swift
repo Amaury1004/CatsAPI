@@ -6,16 +6,12 @@ class NetworkManager {
     private let baseURL = "https://api.thecatapi.com"
     private let ver = "/v1"
     private let apiKey = "live_PvwxovYWKoNyZcHanV1SOHNtRH6gqIMVOzY2Gwv8JNueEkAI8yn700O9TxTc9fOU"
-    private let has_breads = "has_breeds"
+    
     enum NetworkRequest: String {
         case none = ""
         case search = "images/search"
     }
-    // Это надо будет убрать
-    enum TypeRequest: Int {
-        case noneBreads = 0
-        case hasBreads = 1
-    }
+    
 
     /// Тебе требовалось добавить доп параметр для того, чтобы получать информацию о породах или нет
     /// Данный параметр задается в соответствующее поле parameters
@@ -24,7 +20,6 @@ class NetworkManager {
     /// Максим прошу внимательно читать код, перед тем как делашеь изменения, осознавать каждую строчку. Посмотри на 34-35 строку и 39-40, задумойся.
     func request<T: Decodable>(_ url: NetworkRequest,
                                parameters: [String: String]? = nil,
-                               typeRequest: TypeRequest? = .noneBreads,
                                completion: @escaping (Result<T, Error>) -> Void) {
         let baseUrl = self.requestUrl(url)
         guard var components = URLComponents(url: baseUrl, resolvingAgainstBaseURL: false) else {
@@ -34,11 +29,8 @@ class NetworkManager {
         components.queryItems = parameters?.map { (key, value) in
             URLQueryItem(name: key, value: value)
         }
-        var queryItems = parameters?.map { URLQueryItem(name: $0.key, value: $0.value) } ?? []
 
-        if typeRequest == .hasBreads {
-            queryItems.append(URLQueryItem(name: "has_breeds", value: "1"))
-            }
+        
         components.queryItems?.append(URLQueryItem(name: "api_key", value: apiKey))
 
         guard let url = components.url else {

@@ -15,19 +15,16 @@ protocol CatListView: AnyObject {
 class CatListViewController: UIViewController {
     private let tableView = UITableView()
     private var cats: [Cat] = []
-    private let withBreeds: Bool
+    
+    private let hasBreeds: Bool
     
     
-    var favoriteCats: [Cat] {
-        FavoritesManager.shared.getFavorites()
-    }
+    private lazy var presenter: CatListProtocol = CatListPresenter(view: self, hasBreeds: hasBreeds)
     
-    private lazy var presenter: CatListProtocol = CatListPresenter(view: self)
-    
-    init(withBreeds: Bool) {
+    init(hasBreeds: Bool) {
         // Переменная по управлению логикой контента, не должна быть во VC
-         self.withBreeds = withBreeds
-         super.init(nibName: nil, bundle: nil)
+        self.hasBreeds = hasBreeds
+        super.init(nibName: nil, bundle: nil)
      }
     
     required init?(coder: NSCoder) {
@@ -46,12 +43,10 @@ class CatListViewController: UIViewController {
         tableView.isPagingEnabled = true
         view.addSubview(tableView)
         setupTopPanel()
-        // То же самое, это решение для презентера, не VC
-        if withBreeds {
-            presenter.loadNextpage_withBreeds()
-        }else{
-            presenter.loadNextPage_withoutBreeds()
-        }
+        
+        presenter.loadNextPage()
+        
+
     }
     
     func setupTopPanel() {
@@ -61,7 +56,7 @@ class CatListViewController: UIViewController {
         // исправить на крестик
         // P.S. В целом не понимаю зачем ты его модалишь, если можно презентовать первый экран на навигейшен вью
         // и с нее пушить
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "xmark"),
                                          style: .plain,
                                          target: self,
                                          action: #selector(backButton))
@@ -77,7 +72,7 @@ class CatListViewController: UIViewController {
         let addFavoriteButton = UIBarButtonItem(image: UIImage(systemName: "star"),
                                                 style: .plain,
                                                 target: self,
-                                                action: #selector(addCurrentToFavorites))
+                                                action: #selector(addToFavorites))
         addFavoriteButton.tintColor = .lightGray
 
         let showFavoritesButton = UIBarButtonItem(image: UIImage(systemName: "cart.fill"),
@@ -89,16 +84,22 @@ class CatListViewController: UIViewController {
         navigationItem.rightBarButtonItems = [showFavoritesButton, addFavoriteButton]
         }
 
-    @objc func addCurrentToFavorites() {
+    @objc func addToFavorites() {
         guard let index = tableView.indexPathsForVisibleRows?.first else { return }
         let cat = cats[index.row]
-        
+
         if !FavoritesManager.shared.getFavorites().contains(where: { $0.id == cat.id }) {
-                FavoritesManager.shared.add(cat: cat)
-                let alert = UIAlertController(title: "Успіх", message: "Кітик доданий до колекції", preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                present(alert, animated: true)
-            }    }
+            FavoritesManager.shared.add(cat: cat)
+
+            let alert = UIAlertController(
+                title: "Успіх",
+                message: "Кітик доданий до колекції",
+                preferredStyle: .actionSheet
+            )
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(alert, animated: true)
+        }
+    }
 
     @objc func showFavorites() {
         let favoritesVC = FavoritesViewController()
@@ -155,7 +156,7 @@ extension CatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == cats.count - 1 {
             // Кривой нейминг, в iOS так не пишут.
-            presenter.loadNextpage_withBreeds()
+            presenter.loadNextPage()
         }
     }
     

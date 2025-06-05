@@ -12,7 +12,7 @@ struct Breed: Codable {
     let id: String?
     let name: String?
     let cfaUrl: String?
-    let vetstreetURL: String?
+    let vetstreetUrl: String?
     let vcahospitalsUrl: String?
     let temperament: String?
     let origin: String?
@@ -42,9 +42,9 @@ struct Breed: Codable {
     let rex: Int?
     let suppressedTail: Int?
     let shortLegs: Int?
-    let wikipediaURL: String?
+    let wikipediaUrl: String?
     let hypoallergenic: Int?
-    let referenceImageID: String?
+    let referenceImageId: String?
 
 }
 

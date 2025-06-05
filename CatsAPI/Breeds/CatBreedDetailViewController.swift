@@ -1,4 +1,6 @@
-	import UIKit
+import UIKit
+import SafariServices
+
 
 class CatBreedDetailViewController: UIViewController {
     private let breed: Breed
@@ -6,51 +8,12 @@ class CatBreedDetailViewController: UIViewController {
     private let tableView = UITableView()
     private let headerImageView = UIImageView()
 
-    private let attributes: [(title: String, value: String)]
+    private let attributes: [Attribute]
 
     init(breed: Breed, imageUrl: URL?) {
         self.breed = breed
         self.catImageUrl = imageUrl
-
-        /// Решение умом *картинка сверхразума*
-        /// В целом можно так оставить, но в будущем всегда используй для такого структуру
-        /// Я конечно сам мог подобным насрать где-то в примере, но это могло быть ради экономии времени, так мы все модели для отображения
-        /// оборачиваем в структуры. Будет у тебя AttributedModel, которая будет иметь те же title/value. Для работы это не критично, но такие штуки могут быть не приняты, хоть подход и норм в целом
-        self.attributes = [
-            ("Weight (Imperial)", breed.weight?.imperial ?? "none"),
-            ("Weight (Metric)", breed.weight?.metric ?? "none"),
-            ("Temperament", breed.temperament ?? "none"),
-            ("Origin", breed.origin ?? "none"),
-            ("Country Codes", breed.countryCodes ?? "none"),
-            ("Country Code", breed.countryCode ?? "none"),
-            ("Life Span", breed.lifeSpan ?? "none"),
-            ("Description", breed.description ?? "none"),
-            ("Alt Names", breed.altNames ?? "none"),
-            ("Intelligence", "\(breed.intelligence ?? 0)"),  // Перевірка опціонального значення
-                ("Affection Level", "\(breed.affectionLevel ?? 0)"),  // Перевірка опціонального значення
-                ("Energy Level", "\(breed.energyLevel ?? 0)"),
-                ("Child Friendly", "\(breed.childFriendly ?? 0)"),
-                ("Dog Friendly", "\(breed.dogFriendly ?? 0)"),
-                ("Grooming", "\(breed.grooming ?? 0)"),
-                ("Health Issues", "\(breed.healthIssues ?? 0)"),
-                ("Shedding Level", "\(breed.sheddingLevel ?? 0)"),
-                ("Social Needs", "\(breed.socialNeeds ?? 0)"),
-                ("Stranger Friendly", "\(breed.strangerFriendly ?? 0)"),
-                ("Vocalisation", "\(breed.vocalisation ?? 0)"),
-                ("Lap", "\(breed.lap ?? 0)"),
-                ("Indoor", "\(breed.indoor ?? 0)"),
-                ("Adaptability", "\(breed.adaptability ?? 0)"),
-                ("Hypoallergenic", "\(breed.hypoallergenic ?? 0)"),
-                ("Natural", "\(breed.natural ?? 0)"),
-                ("Rare", "\(breed.rare ?? 0)"),
-                ("Rex", "\(breed.rex ?? 0)"),
-                ("Short Legs", "\(breed.shortLegs ?? 0)"),
-                ("Suppressed Tail", "\(breed.suppressedTail ?? 0)"),
-                ("Experimental", "\(breed.experimental ?? 0)"),
-            ("Wikipedia URL", breed.wikipediaURL ?? "none"),
-            ("Vetstreet URL", breed.vetstreetURL ?? "none")
-        ]
-
+        self.attributes = AttributeFactory.makeAttributes(from: breed)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -76,7 +39,6 @@ class CatBreedDetailViewController: UIViewController {
         tableView.tableHeaderView = headerImageView
         tableView.register(AttributeCell.self, forCellReuseIdentifier: AttributeCell.reuseIdentifier)
 
-
         view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
@@ -99,7 +61,6 @@ class CatBreedDetailViewController: UIViewController {
     }
 }
              
-             
 extension CatBreedDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return attributes.count
@@ -111,4 +72,16 @@ extension CatBreedDetailViewController: UITableViewDelegate, UITableViewDataSour
         cell.configure(title: attribute.title, value: attribute.value)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let attribute = attributes[indexPath.row]
+
+        if attribute.title.contains("URL"),
+           let url = URL(string: attribute.value){
+           let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true)
+        }
+
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
 }

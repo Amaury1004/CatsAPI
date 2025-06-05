@@ -1,33 +1,32 @@
 protocol CatListProtocol {
-    func loadNextPage_withoutBreeds()
-    func loadNextpage_withBreeds()
+    func loadNextPage()
+    
 }
 
 class CatListPresenter: CatListProtocol {
     private var currentPage = 0
     private var isLoading = false
     weak var view: CatListView?
-    private let pageSize = 10 // Тут раньше было 5, я так понял что это кол-во картинок, но загружальнось все равно 10, как только я подключил апи но начало отображать 5 как тут и приишлось поменять на 10 как было до этого. Вопрос: Как оно ранее генерело 10 при значении в 5,( мб это связано с апи кекВ)
+    private let pageSize = 10
+    private let hasBreeds: Bool
+    
 
-    init(view: CatListView) {
+    init(view: CatListView, hasBreeds: Bool) {
         self.view = view
+        self.hasBreeds = hasBreeds
     }
-    // Неверный нейминг
-    func loadNextpage_withBreeds() {
-        // Ну и можно не разбивать на два метода, я объяснил, где должна передаваться эта переменная
-        loadNextPage(with: .hasBreads)
+    
+    enum HasBreeds: String {
+        case none = "0"
+        case has = "1"
     }
-    // Неверный нейминг
-    func loadNextPage_withoutBreeds() {
-        loadNextPage()
-    }
-
-    func loadNextPage(with type: NetworkManager.TypeRequest? = nil) {
+    
+    func loadNextPage() {
         guard !isLoading else { return }
         isLoading = true
-        // Ультра гига омега критическая ошибка идем разбираться в Network Manager
+        let hasBreedsEnum: HasBreeds = hasBreeds ? .has : .none
         NetworkManager.shared.request(.search,
-                                      parameters: ["limit": "\(pageSize)", "page": "\(currentPage)"], typeRequest: type) { [weak self] (result: Result<[Cat], Error>) in
+                                      parameters: ["limit": "\(pageSize)", "page": "\(currentPage)", "breeds": "\(hasBreedsEnum.rawValue)"])  { [weak self] (result: Result<[Cat], Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let cats):

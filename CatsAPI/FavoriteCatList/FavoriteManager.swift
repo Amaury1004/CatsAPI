@@ -1,4 +1,9 @@
 import UIKit
+protocol FavoritesManagerProtocol {
+    func add(cat: Cat)
+    func getFavorites() -> [Cat]
+    func save(_ cats: [Cat])
+}
 
 class FavoritesManager {
     static let shared = FavoritesManager()
@@ -28,3 +33,4 @@ class FavoritesManager {
         }
     }
 }
+extension FavoritesManager: FavoritesManagerProtocol {}

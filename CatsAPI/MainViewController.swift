@@ -110,7 +110,7 @@ class MainViewController: UIViewController {
         ])
     }
     @objc private func justCat() {
-        let justCat = CatListViewController(withBreeds: false)
+        let justCat = CatListViewController(hasBreeds: false)
         let nc = UINavigationController(rootViewController: justCat)
         nc.modalPresentationStyle = .fullScreen
         self.present(nc, animated: true, completion: nil)
@@ -122,7 +122,7 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
     @objc private func breedsCat() {
-        let breedsCat = CatListViewController(withBreeds: true)
+        let breedsCat = CatListViewController(hasBreeds: true)
         let nc = UINavigationController(rootViewController: breedsCat)
         nc.modalPresentationStyle = .fullScreen
         // ЧТобы не подалить (present) а делать пуш(push) тебе надо этот контроллер обернуть в навигейшен

@@ -12,7 +12,7 @@ class FavoritePresenter {
     
     weak var  view: FavoritesViewProtocol?
     private var favorites: [Cat] = []
-     var  manager: FavoritesManagerProtocol
+    var  manager: FavoritesManagerProtocol
     
     init(view: FavoritesViewProtocol, manager: FavoritesManagerProtocol = FavoritesManager.shared) {
         self.view = view

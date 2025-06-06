@@ -52,20 +52,21 @@ class FavoritesViewController: UIViewController {
             view.addSubview(deleteButton)
 
             NSLayoutConstraint.activate([
-                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                tableView.topAnchor.constraint(equalTo: view.topAnchor),
                 tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                tableView.bottomAnchor.constraint(equalTo: searchButton.topAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
                 searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                 searchButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -8),
                 searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-                searchButton.heightAnchor.constraint(equalToConstant: 50),
+                
+
 
                 deleteButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 8),
                 deleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                deleteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-                deleteButton.heightAnchor.constraint(equalToConstant: 50)
+                deleteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+                
             ])
         
     }
@@ -166,8 +167,16 @@ extension FavoritesViewController: UIScrollViewDelegate {
                 mainLabel.textAlignment = .center
                 
                 self.navigationItem.titleView = mainLabel
+                
+                let cat = self.favorites[currentIndex]
+                let hasBreed = !(cat.breeds?.isEmpty ?? true)
+
+                self.searchButton.isEnabled = hasBreed
+                self.searchButton.backgroundColor = hasBreed ? .systemBlue : .lightGray
             }
-        }
+          
+        
     }
 
+    }
 }

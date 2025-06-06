@@ -18,9 +18,6 @@ class CatListCell: UITableViewCell {
     static let reuseIdentifier = "CatListCell"
     
     private let catImageView = UIImageView()
-    private let breedInfoStackView = UIStackView()
-    private let breedIcon = UIImageView()
-    private let breedLabel = UILabel()
     
     private var currentScale: CGFloat = 1.0
     private let minScale: CGFloat = 1.0
@@ -34,7 +31,6 @@ class CatListCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         setupImageView()
-        setupBreedInfo()
         setupLayout()
         setupPinchGesture()
     }
@@ -51,34 +47,14 @@ class CatListCell: UITableViewCell {
         contentView.addSubview(catImageView)
     }
 
-    private func setupBreedInfo() {
-        breedIcon.image = UIImage(systemName: "exclamationmark.circle")
-        breedIcon.tintColor = .systemOrange
-        breedIcon.translatesAutoresizingMaskIntoConstraints = false
-        breedIcon.setContentHuggingPriority(.required, for: .horizontal)
-
-        breedLabel.text = "Є порода"
-        breedLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        breedLabel.textColor = .systemOrange
-
-        breedInfoStackView.axis = .horizontal
-        breedInfoStackView.spacing = 6
-        breedInfoStackView.alignment = .center
-        breedInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-        breedInfoStackView.addArrangedSubview(breedIcon)
-        breedInfoStackView.addArrangedSubview(breedLabel)
-        contentView.addSubview(breedInfoStackView)
-    }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
                catImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
                catImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
                catImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-               catImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+               catImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
     
-               breedInfoStackView.topAnchor.constraint(equalTo: catImageView.bottomAnchor, constant: -44),
-               breedInfoStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
 
     }
@@ -93,8 +69,6 @@ class CatListCell: UITableViewCell {
         catImageView.image = nil
         currentScale = 1.0
         catImageView.transform = .identity
-
-        breedInfoStackView.isHidden = !vm.hasBreed
 
         ImageDownloader.shared.downloadImage(from: vm.imageUrl.absoluteString) { [weak self] image in
             DispatchQueue.main.async {

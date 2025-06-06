@@ -14,8 +14,8 @@ protocol CatListView: AnyObject {
 
 class CatListViewController: UIViewController {
     private let tableView = UITableView()
-    
     private let hasBreeds: Bool
+    private var infoButton: UIBarButtonItem!
     
     
     private lazy var presenter: CatListProtocol = CatListPresenter(view: self, hasBreeds: hasBreeds)
@@ -44,8 +44,6 @@ class CatListViewController: UIViewController {
         setupTopPanel()
         
         presenter.loadNextPage()
-        
-
     }
     
     func setupTopPanel() {
@@ -59,14 +57,12 @@ class CatListViewController: UIViewController {
                                          style: .plain,
                                          target: self,
                                          action: #selector(backButton))
-        
-        
-        
-        let leftButton = UIBarButtonItem(image: UIImage(systemName: "info.circle"),
+        infoButton = UIBarButtonItem(image: UIImage(systemName: "info.circle"),
                                              style: .plain,
                                              target: self,
                                              action: #selector(menu))
-        navigationItem.leftBarButtonItems = [backButton, leftButton]
+        infoButton.tintColor = .lightGray
+        navigationItem.leftBarButtonItems = [backButton, infoButton]
 
         let addFavoriteButton = UIBarButtonItem(image: UIImage(systemName: "star"),
                                                 style: .plain,
@@ -105,21 +101,19 @@ class CatListViewController: UIViewController {
         navigationController?.pushViewController(favoritesVC, animated: true)
     }
     @objc func menu() {
+        print("INFO BUTTON PRESSED")
         guard let index = tableView.indexPathsForVisibleRows?.first else { return }
         let cat = presenter.getCatIndex(at: index.row)
-        
+
         guard let breeds = cat.breeds, !breeds.isEmpty else {
-            let alert = UIAlertController(title: "Нет информации", message: "У этого кота нет описания породы", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ок", style: .default))
-            present(alert, animated: true)
             return
         }
-        
+
         if let breed = cat.breeds?.first, let imageUrl = URL(string: cat.url) {
             let vc = CatBreedDetailViewController(breed: breed, imageUrl: imageUrl)
             navigationController?.pushViewController(vc, animated: true)
         }
-        
+
     }
     @objc func backButton() {
         dismiss(animated: true)
@@ -196,6 +190,12 @@ extension CatListViewController: UIScrollViewDelegate {
                 
                 self.navigationItem.titleView = mainLabel
             }
+        if let index = tableView.indexPathsForVisibleRows?.first {
+            let cat = presenter.getCatIndex(at: index.row)
+            let hasBreed = !(cat.breeds?.isEmpty ?? true)
+            infoButton.isEnabled = hasBreed
+            infoButton.tintColor = hasBreed ? .systemBlue : .lightGray
+        }
         
     }
 }

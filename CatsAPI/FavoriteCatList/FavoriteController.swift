@@ -20,7 +20,7 @@ class FavoritesViewController: UIViewController {
                                                  target: self,
                                                  action: #selector(backButton))
                 
-                navigationItem.leftBarButtonItem = backButton
+        	navigationItem.leftBarButtonItem = backButton
         view.backgroundColor = .white
 
             tableView.translatesAutoresizingMaskIntoConstraints = false

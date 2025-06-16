@@ -7,6 +7,8 @@ class CatBreedDetailViewController: UIViewController {
     private let catImageUrl: URL?
     private let tableView = UITableView()
     private let headerImageView = UIImageView()
+    
+    
 
     private let attributes: [Attribute]
 
@@ -69,7 +71,7 @@ extension CatBreedDetailViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AttributeCell.reuseIdentifier, for: indexPath) as! AttributeCell
         let attribute = attributes[indexPath.row]
-        cell.configure(title: attribute.title, value: attribute.value)
+        cell.configure(model: attribute)
         return cell
     }
     

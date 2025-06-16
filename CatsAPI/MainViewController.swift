@@ -45,23 +45,23 @@ class MainViewController: UIViewController {
         
         buttonCats.setTitle("Звичайний котик", for: .normal)
         buttonCats.titleLabel?.font = UIFont.systemFont(ofSize: 22)
-        buttonCats.setTitleColor(.black, for: .normal)
+        buttonCats.setTitleColor(.lightGray, for: .normal)
         buttonCats.backgroundColor = .red
-        buttonCats.layer.cornerRadius = 7
+        buttonCats.layer.cornerRadius = 12
         buttonCats.clipsToBounds = true
         
         buttonCatsBreeds.setTitle("Котик з породою", for: .normal)
         buttonCatsBreeds.titleLabel?.font = UIFont.systemFont(ofSize: 22)
         buttonCatsBreeds.setTitleColor(.red, for: .normal)
-        buttonCatsBreeds.backgroundColor = .black
-        buttonCatsBreeds.layer.cornerRadius = 7
+        buttonCatsBreeds.backgroundColor = .lightGray
+        buttonCatsBreeds.layer.cornerRadius = 12
         buttonCatsBreeds.clipsToBounds = true
         
         buttonFavoriteCats.setTitle("Улюблені котики's", for: .normal)
         buttonFavoriteCats.titleLabel?.font = UIFont.systemFont(ofSize: 22)
         buttonFavoriteCats.setTitleColor(.white, for: .normal)
         buttonFavoriteCats.backgroundColor = .systemPink
-        buttonFavoriteCats.layer.cornerRadius = 7
+        buttonFavoriteCats.layer.cornerRadius = 12
         buttonFavoriteCats.clipsToBounds = true
         
         buttonCats.translatesAutoresizingMaskIntoConstraints = false
